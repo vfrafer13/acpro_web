@@ -111,4 +111,9 @@ class AppointmentController extends Controller
 
         return Redirect::to('appointments');
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }

@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages/home');
-});
-
 Route::get('vetHistory/history_entries/{id}', 'VetHistoryController@dog_history');
 Route::get('vetHistory/entry_detail/{id}', 'VetHistoryController@show');
 Route::get('vetHistory/entry/{id}/edit', 'VetHistoryController@edit');
@@ -51,3 +47,7 @@ Route::get('eventHistory/{eventHistory}/edit', function () {
 Route::get('eventHistory/create', function () {
     return redirect('eventHistory/');
 });
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
