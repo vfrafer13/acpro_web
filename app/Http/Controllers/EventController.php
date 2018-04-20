@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use Carbon\Carbon;
 use App\Event;
 use App\EventType;
 use App\Dog;
@@ -93,7 +94,8 @@ class EventController extends Controller
         $types = EventType::pluck('name', 'id');
         $dogs = Dog::all();
         $checked = Event::find($id)->dogs;
-
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $event->date);
+        $time = $date->format('H:m:s');
         $items = array();
         foreach($checked as $id=>$checked_item) {
             $items[] = $checked_item->id;
@@ -101,6 +103,8 @@ class EventController extends Controller
 
         return View::make('events.edit', compact('id', 'types', 'items'))
             ->with('event', $event)
+            ->with('date', $date)
+            ->with('time', $time)
             ->with('dogs', $dogs);
     }
 
