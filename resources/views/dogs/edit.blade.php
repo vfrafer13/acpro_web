@@ -14,13 +14,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         {{ Form::label('name', 'Nombre') }}
-                        {{ Form::text('name', Input::old('name'), array('class' => 'form-control border-input')) }}
+                        {{ Form::text('name', Input::old('name'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         {{ Form::label('owner', 'Dueño') }}
-                        {{ Form::text('owner', Input::old('owner'), array('class' => 'form-control border-input')) }}
+                        {{ Form::text('owner', Input::old('owner'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
             </div>
@@ -28,25 +28,25 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         {{ Form::label('breed', 'Raza') }}
-                        {{ Form::text('breed', Input::old('breed'), array('class' => 'form-control border-input')) }}
+                        {{ Form::text('breed', Input::old('breed'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         {{ Form::label('age', 'Edad (en años)') }}
-                        {{ Form::text('age', Input::old('age'), array('class' => 'form-control border-input')) }}
+                        {{ Form::text('age', Input::old('age'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         {{ Form::label('weight', 'Peso (en kg)') }}
-                        {{ Form::text('weight', Input::old('weight'), array('class' => 'form-control border-input')) }}
+                        {{ Form::text('weight', Input::old('weight'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         {{ Form::label('gender', 'Sexo') }}
-                        {{ Form::select('gender', array('0' => 'Macho', '1' => 'Hembra'), Input::old('gender'), array('class' => 'form-control border-input')) }}
+                        {{ Form::select('gender', array('0' => 'Macho', '1' => 'Hembra'), Input::old('gender'), array('class' => 'form-control border-input', 'required'=>'required')) }}
 
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="col-md-9">
                     <div class="form-group">
                         {{ Form::label('physicalDescription', 'Descripción Física') }}
-                        {{ Form::text('physicalDescription', Input::old('physicalDescription'), array('class' => 'form-control border-input')) }}
+                        {{ Form::text('physicalDescription', Input::old('physicalDescription'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
             </div>

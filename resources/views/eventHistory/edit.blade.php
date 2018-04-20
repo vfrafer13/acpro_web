@@ -24,7 +24,7 @@
                 <div class="col-md-9">
                     <div class="form-group">
                         {{ Form::label('notes', 'Notas') }}
-                        {{ Form::textarea('notes', Input::old('notes'), array('class' => 'form-control border-input')) }}
+                        {{ Form::textarea('notes', Input::old('notes'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
             </div>

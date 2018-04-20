@@ -14,7 +14,7 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         {{ Form::label('dog_id', 'Perro') }}
-                        {{ Form::select('dog_id', $dogs, Input::old('dog_id'), ['class' => 'form-control border-input']) }}
+                        {{ Form::select('dog_id', $dogs, Input::old('dog_id'), ['class' => 'form-control border-input', 'required'=>'required']) }}
                     </div>
                 </div>
             </div>
@@ -22,13 +22,13 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         {{ Form::label('date', 'Fecha') }}
-                        {{ Form::date('date', $date, array('class' => 'form-control border-input')) }}
+                        {{ Form::date('date', $date, array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
                         {{ Form::label('time', 'Hora') }}
-                        {{ Form::time('time', $time, array('class' => 'form-control border-input')) }}
+                        {{ Form::time('time', $time, array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         {{ Form::label('address', 'Dirección') }}
-                        {{ Form::text('address', Input::old('address'), array('class' => 'form-control border-input')) }}
+                        {{ Form::text('address', Input::old('address'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
             </div>

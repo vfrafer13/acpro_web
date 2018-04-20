@@ -14,13 +14,13 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         {{ Form::label('name', 'Nombre') }}
-                        {{ Form::text('name', Input::old('name'), array('class' => 'form-control border-input')) }}
+                        {{ Form::text('name', Input::old('name'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
                         {{ Form::label('type', 'Tipo de Evento') }}
-                        {{ Form::select('type', $types, Input::old('type'), ['class' => 'form-control border-input']) }}
+                        {{ Form::select('type', $types, Input::old('type'), ['class' => 'form-control border-input', 'required'=>'required']) }}
                     </div>
                 </div>
             </div>
@@ -28,13 +28,13 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         {{ Form::label('date', 'Fecha') }}
-                        {{ Form::date('date', Input::old('date'), array('class' => 'form-control border-input')) }}
+                        {{ Form::date('date', Input::old('date'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
                         {{ Form::label('time', 'Hora') }}
-                        {{ Form::time('time', Input::old('time'), array('class' => 'form-control border-input')) }}
+                        {{ Form::time('time', Input::old('time'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         {{ Form::label('address', 'Dirección') }}
-                        {{ Form::text('address', Input::old('address'), array('class' => 'form-control border-input')) }}
+                        {{ Form::text('address', Input::old('address'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
             </div>
