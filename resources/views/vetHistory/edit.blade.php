@@ -29,7 +29,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         {{ Form::label('date', 'Fecha') }}
-                        {{ Form::date('date', Input::old('date'), array('class' => 'form-control border-input')) }}
+                        {{ Form::date('date', $date, array('class' => 'form-control border-input')) }}
                     </div>
                 </div>
             </div>

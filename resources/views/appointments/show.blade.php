@@ -21,11 +21,11 @@
                     </tr>
                     <tr>
                         <td><b>Fecha</b></td>
-                        <td>{{date('d-m-Y', strtotime($appointment->date))}}</td>
+                        <td>{{date('d/m/Y', strtotime($appointment->date))}}</td>
                     </tr>
                     <tr>
                         <td><b>Hora</b></td>
-                        <td>{{date('H-i-s', strtotime($appointment->date))}}</td>
+                        <td>{{date('H:i', strtotime($appointment->date))}}</td>
                     </tr>
                     <tr>
                         <td><b>Dirección</b></td>

@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\VetHistory;
 use App\Dog;
 use App\VetType;
+use Carbon\Carbon;
 use View;
 use Input;
 use Illuminate\Support\Facades\Redirect;
@@ -107,9 +108,11 @@ class VetHistoryController extends Controller
         $vetHistory = VetHistory::find($id);
         $dog = Dog::find($vetHistory->dog_id);
         $types = VetType::pluck('name', 'id');
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $vetHistory->date);
 
         return View::make('vetHistory.edit')
             ->with('vetHistory', $vetHistory)
+            ->with('date', $date)
             ->with('types', $types)
             ->with('dog', $dog);
     }

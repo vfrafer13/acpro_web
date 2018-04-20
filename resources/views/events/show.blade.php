@@ -13,11 +13,11 @@
                 <tbody>
                 <tr>
                     <td><b>Fecha</b></td>
-                    <td>{{date('d-m-Y', strtotime($event->date))}}</td>
+                    <td>{{date('d/m/Y', strtotime($event->date))}}</td>
                 </tr>
                 <tr>
                     <td><b>Hora</b></td>
-                    <td>{{date('H-i-s', strtotime($event->date))}}</td>
+                    <td>{{date('H:i', strtotime($event->date))}}</td>
                 </tr>
                 <tr>
                     <td><b>Tipo</b></td>

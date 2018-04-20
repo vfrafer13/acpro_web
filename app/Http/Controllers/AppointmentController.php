@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Appointment;
 use App\Dog;
+use Carbon\Carbon;
 use View;
 use Input;
 use Illuminate\Support\Facades\Redirect;
@@ -44,7 +45,10 @@ class AppointmentController extends Controller
     {
         $appointment = new Appointment;
         $appointment->dog_id        = Input::get('dog_id');
-        $appointment->date          = Input::get('date');
+        $date = Input::get('date');
+        $time = Input::get('time');
+        $date = Carbon::createFromTimestamp(strtotime($date . $time . ":00"));
+        $appointment->date          = $date;
         $appointment->address       = Input::get('address');
         $appointment->save();
 
@@ -76,9 +80,13 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::find($id);
         $dogs = Dog::all()->pluck('full_name', 'id');
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $appointment->date);
+        $time = $date->format('H:m:s');
 
         return View::make('appointments.edit', compact('id', 'dogs'))
-            ->with('appointment', $appointment);
+            ->with('appointment', $appointment)
+            ->with('date', $date)
+            ->with('time', $time);
     }
 
     /**
@@ -91,7 +99,10 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::find($id);
         $appointment->dog_id        = Input::get('dog_id');
-        $appointment->date          = Input::get('date');
+        $date = Input::get('date');
+        $time = Input::get('time');
+        $date = Carbon::createFromTimestamp(strtotime($date . $time . ":00"));
+        $appointment->date          = $date;
         $appointment->address       = Input::get('address');
         $appointment->save();
 
