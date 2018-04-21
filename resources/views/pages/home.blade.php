@@ -29,7 +29,8 @@
                             Próximo evento: {{date('d/m/Y', strtotime($event->date))}}, {{date('H:i', strtotime($event->date))}}
                         </h6>
                     </a><br>
-                @elseif(!is_null($appointment))
+                @endif
+                @if(!is_null($appointment))
                     <a href="{{ URL::to('appointments/' . $appointment->id) }}">
                         <h6>
                             Próxima cita: {{date('d/m/Y', strtotime($appointment->date))}}, {{date('H:i', strtotime($appointment->date))}}
