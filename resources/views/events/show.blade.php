@@ -16,7 +16,7 @@
                     <td>{{date('d/m/Y', strtotime($event->date))}}</td>
                 </tr>
                 <tr>
-                    <td><b>Hora</b></td>
+                    <td><b>Hora de Inicio</b></td>
                     <td>{{date('H:i', strtotime($event->date))}}</td>
                 </tr>
                 <tr>
