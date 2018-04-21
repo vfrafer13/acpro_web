@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Appointment;
 use App\Dog;
 use Carbon\Carbon;
@@ -41,8 +42,14 @@ class AppointmentController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
+        $request->validate([
+            'date' => 'required|time_free:time,time_end',
+            'time' => 'required',
+            'time_end' => 'required|after:time',
+        ]);
+
         $appointment = new Appointment;
         $appointment->dog_id        = Input::get('dog_id');
 
@@ -104,8 +111,14 @@ class AppointmentController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'date' => 'required|time_free:time,time_end',
+            'time' => 'required',
+            'time_end' => 'required|after:time',
+        ]);
+
         $appointment = Appointment::find($id);
         $appointment->dog_id        = Input::get('dog_id');
 

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Event;
 use App\EventType;
 use App\Dog;
+use App\Appointment;
 use View;
 use Input;
 use Illuminate\Support\Facades\Redirect;
@@ -48,8 +50,15 @@ class EventController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
+
+        $request->validate([
+            'date' => 'required|time_free:time,time_end',
+            'time' => 'required',
+            'time_end' => 'required|after:time',
+        ]);
+
         $event = new Event;
         $event->name           = Input::get('name');
 
@@ -127,9 +136,16 @@ class EventController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'date' => 'required|time_free:time,time_end',
+            'time' => 'required',
+            'time_end' => 'required|after:time',
+        ]);
+
         $event = Event::find($id);
+
         $event->name           = Input::get('name');
 
         $date_db = Carbon::createFromFormat('Y-m-d H:i:s', $event->date);
