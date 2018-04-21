@@ -23,7 +23,7 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         {{ Form::hidden('id', $event->id)}}
-                        {{ Form::hidden('type', 'event')}}
+                        {{ Form::hidden('query_type', 'event')}}
                         {{ Form::label('name', 'Nombre') }}
                         {{ Form::text('name', Input::old('name'), array('class' => 'form-control border-input')) }}
                     </div>

@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
-                        {{ Form::hidden('type', 'null')}}
+                        {{ Form::hidden('query_type', 'null')}}
                         {{ Form::label('name', 'Nombre') }}
                         {{ Form::text('name', Input::old('name'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>

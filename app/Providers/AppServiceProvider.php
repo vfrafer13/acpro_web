@@ -51,7 +51,6 @@ class AppServiceProvider extends ServiceProvider
             );
 
             $type = Input::get($parameters[3]);
-            dd([$type]);
 
             if($type == 'event') {
                 $id = Input::get($parameters[2]);
@@ -62,7 +61,10 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $eventInRange = $eventInRangeQUERY->count();
+
             $appointmentInRange = $appointmentInRangeQUERY->count();
+
+            //dd([$eventInRange, $appointmentInRange]);
 
             if ($eventInRange > 0 || $appointmentInRange > 0) {
 
