@@ -23,6 +23,8 @@
 <!--  CSS for Demo Purpose, don't include it in your project     -->
 <link href="{{ asset("css/demo.css")}}" rel="stylesheet" />
 
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+
 
 <!--  Fonts and icons     -->
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">

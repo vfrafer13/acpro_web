@@ -7,13 +7,13 @@ use App\VetHistory;
 use App\Dog;
 use App\VetType;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use View;
 use Input;
 use Illuminate\Support\Facades\Redirect;
 
 class VetHistoryController extends Controller
 {
-    private $dogID;
 
     public function __construct()
     {
@@ -65,8 +65,12 @@ class VetHistoryController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
+        $request->validate([
+
+        ]);
+
         $vetHistory = new VetHistory;
         $vetHistory->dog_id     = Input::get('dog_id');
         $vetHistory->date       = Input::get('date');

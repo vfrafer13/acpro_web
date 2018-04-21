@@ -1,6 +1,7 @@
 <!--   Core JS Files   -->
 <script src="{{ asset("js/jquery-1.10.2.js")}}" type="text/javascript"></script>
 <script src="{{ asset("js/bootstrap.min.js")}}" type="text/javascript"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="{{ asset("js/bootstrap-checkbox-radio.js")}}"></script>

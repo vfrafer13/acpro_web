@@ -8,6 +8,7 @@ use App\EventHistory;
 use App\Event;
 use App\Dog;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use DB;
 use View;
 use Input;
