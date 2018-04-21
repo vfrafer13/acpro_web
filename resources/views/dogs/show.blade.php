@@ -73,7 +73,12 @@
         </div>
     </div>
     <div class="text-center">
-        <a class="btn btn-small btn-primary" href="{{ URL::to('vetHistory/history_entries/' . $dog->id) }}">Historial Veterinario</a>
-        <a class="btn btn-small btn-primary" href="{{ URL::to('eventHistory/history_entries/' . $dog->id) }}">Historial de Eventos</a>
+        <a href="{{ URL::to('vetHistory/history_entries/' . $dog->id) }}">Historial Veterinario</a>
+        &nbsp
+        &nbsp
+        &nbsp
+        &nbsp
+        &nbsp
+        <a href="{{ URL::to('eventHistory/history_entries/' . $dog->id) }}">Historial de Eventos</a>
     </div>
 @stop

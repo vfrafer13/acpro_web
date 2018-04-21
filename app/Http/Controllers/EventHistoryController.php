@@ -75,6 +75,7 @@ class EventHistoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'event_id' => 'required|unique_with:event_histories,dog_id'
         ]);
 
         $eventHistory = new EventHistory;

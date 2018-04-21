@@ -122,6 +122,8 @@ return [
     'attributes' => [
         'time' => 'hora de inicio',
         'time_end' => 'hora de fin',
+        'event_id' => 'evento',
+        'dog_id' => 'perro'
     ],
 
 ];

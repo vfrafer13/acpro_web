@@ -35,16 +35,44 @@ class HomeController extends Controller
 
 
         $contents = file_get_contents($url);
-        $clima=json_decode($contents);
-        $temp = $clima->main->temp;
-        $temp_max=$clima->main->temp_max;
-        $icon=$clima->weather[0]->icon.".png";
+        $weather=json_decode($contents);
+        $temp = $weather->main->temp;
+        $icon=$weather->weather[0]->icon.".png";
+        $coordinates = $this->getCoordinates($appointment->address);
 
         return view('pages/home')
             ->with('appointment', $appointment)
             ->with('event', $event)
             ->with('temp', $temp)
-            ->with('temp_max', $temp_max)
-            ->with('icon', $icon);
+            ->with('icon', $icon)
+            ->with('coordinates', $coordinates);
     }
+
+    private function getCoordinates($address) {
+        $address = str_replace(" ", "+", $address);
+        $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=$address";
+
+        $response = file_get_contents($url);
+
+        $json = json_decode($response,TRUE);
+
+        $coordinates = array();
+
+        try {
+
+            $coordinates[] = $json['results'][0]['geometry']['location']['lat'];
+            $coordinates[] = $json['results'][0]['geometry']['location']['lng'];
+
+        } catch (\Exception $e) {
+
+            $coordinates[] = 20.9758206;
+            $coordinates[] = -89.634933;
+            $coordinates[] = 10;
+        }
+
+
+
+        return $coordinates;
+    }
+
 }
