@@ -20,6 +20,10 @@
                     <td>{{date('H:i', strtotime($event->date))}}</td>
                 </tr>
                 <tr>
+                    <td><b>Hora de Fin</b></td>
+                    <td>{{date('H:i', strtotime($event->date_end))}}</td>
+                </tr>
+                <tr>
                     <td><b>Tipo</b></td>
                     <td>{{$type_name}}</td>
                 </tr>

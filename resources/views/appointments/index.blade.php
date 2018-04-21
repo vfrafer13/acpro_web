@@ -14,6 +14,7 @@
             <td>Perro</td>
             <td>Dueño</td>
             <td>Fecha</td>
+            <td>Hora</td>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
                 <td>{{ $value->dog->name }}</td>
                 <td>{{ $value->dog->owner }}</td>
                 <td>{{ date('d-m-Y', strtotime($value->date)) }}</td>
+                <td>{{ date('H:i', strtotime($value->date)) }}</td>
                 <td>
                     {{ Form::open(array('url' => 'appointments/' . $value->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}

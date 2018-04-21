@@ -45,10 +45,16 @@ class AppointmentController extends Controller
     {
         $appointment = new Appointment;
         $appointment->dog_id        = Input::get('dog_id');
-        $date = Input::get('date');
+
+        $date_input = Input::get('date');
         $time = Input::get('time');
-        $date = Carbon::createFromTimestamp(strtotime($date . $time . ":00"));
+        $time_end = Input::get('time_end');
+
+        $date_end = Carbon::createFromTimestamp(strtotime($date_input . $time_end));
+        $date = Carbon::createFromTimestamp(strtotime($date_input . $time . ":00"));
+
         $appointment->date          = $date;
+        $appointment->date_end      = $date_end;
         $appointment->address       = Input::get('address');
         $appointment->save();
 
@@ -82,10 +88,13 @@ class AppointmentController extends Controller
         $dogs = Dog::all()->pluck('full_name', 'id');
         $date = Carbon::createFromFormat('Y-m-d H:i:s', $appointment->date);
         $time = $date->format('H:m:s');
+        $time_end = Carbon::createFromFormat('Y-m-d H:i:s', $appointment->date_end);
+        $time_end = $time_end->format('H:i');
 
         return View::make('appointments.edit', compact('id', 'dogs'))
             ->with('appointment', $appointment)
             ->with('date', $date)
+            ->with('time_end', $time_end)
             ->with('time', $time);
     }
 
@@ -99,11 +108,20 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::find($id);
         $appointment->dog_id        = Input::get('dog_id');
+
         $date_db = Carbon::createFromFormat('Y-m-d H:i:s', $appointment->date);
-        $date = Input::get('date', $date_db->format('Y-m-d'));
+        $date_input = Input::get('date', $date_db->format('Y-m-d'));
         $time = Input::get('time', $date_db->format('H:i'));
-        $date = Carbon::createFromTimestamp(strtotime($date . $time));
+
+        $date_end_db = Carbon::createFromFormat('Y-m-d H:i:s', $appointment->date_end);
+        $time_end = Input::get('time_end', $date_end_db->format('H:i'));
+
+        $date = Carbon::createFromTimestamp(strtotime($date_input . $time));
+        $date_end = Carbon::createFromTimestamp(strtotime($date_input . $time_end));
+
         $appointment->date          = $date;
+        $appointment->date_end      = $date_end;
+
         $appointment->address       = Input::get('address');
         $appointment->save();
 

@@ -52,10 +52,16 @@ class EventController extends Controller
     {
         $event = new Event;
         $event->name           = Input::get('name');
-        $date = Input::get('date');
+
+        $date_input = Input::get('date');
         $time = Input::get('time');
-        $date = Carbon::createFromTimestamp(strtotime($date . $time . ":00"));
+        $time_end = Input::get('time_end');
+
+        $date_end = Carbon::createFromTimestamp(strtotime($date_input . $time_end));
+        $date = Carbon::createFromTimestamp(strtotime($date_input . $time . ":00"));
+
         $event->date           = $date;
+        $event->date_end       = $date_end;
         $event->address        = Input::get('address');
         $event->type           = Input::get('type');
         $event->save();
@@ -99,6 +105,9 @@ class EventController extends Controller
         $checked = Event::find($id)->dogs;
         $date = Carbon::createFromFormat('Y-m-d H:i:s', $event->date);
         $time = $date->format('H:m:s');
+        $time_end = Carbon::createFromFormat('Y-m-d H:i:s', $event->date_end);
+        $time_end = $time_end->format('H:i');
+
         $items = array();
         foreach($checked as $id=>$checked_item) {
             $items[] = $checked_item->id;
@@ -108,6 +117,7 @@ class EventController extends Controller
             ->with('event', $event)
             ->with('date', $date)
             ->with('time', $time)
+            ->with('time_end', $time_end)
             ->with('dogs', $dogs);
     }
 
@@ -121,11 +131,20 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         $event->name           = Input::get('name');
+
         $date_db = Carbon::createFromFormat('Y-m-d H:i:s', $event->date);
-        $date = Input::get('date', $date_db->format('Y:m:d'));
+
+        $date_input = Input::get('date', $date_db->format('Y:m:d'));
         $time = Input::get('time', $date_db->format('H:i'));
-        $date = Carbon::createFromTimestamp(strtotime($date . $time));
+
+        $date_end_db = Carbon::createFromFormat('Y-m-d H:i:s', $event->date_end);
+        $time_end = Input::get('time_end', $date_end_db->format('H:i'));
+
+        $date = Carbon::createFromTimestamp(strtotime($date_input . $time));
+        $date_end = Carbon::createFromTimestamp(strtotime($date_input . $time_end));
+
         $event->date           = $date;
+        $event->date_end       = $date_end;
         $event->address        = Input::get('address');
         $event->type           = Input::get('type');
         $event->save();

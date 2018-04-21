@@ -25,16 +25,22 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="form-group">
                         {{ Form::label('date', 'Fecha') }}
                         {{ Form::date('date', Input::old('date'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <div class="form-group">
-                        {{ Form::label('time', 'Hora') }}
+                        {{ Form::label('time', 'Hora de Inicio') }}
                         {{ Form::time('time', Input::old('time'), array('class' => 'form-control border-input', 'required'=>'required')) }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        {{ Form::label('time_end', 'Hora de Fin') }}
+                        {{ Form::time('time_end', Input::old('time_end'), array('class' => 'form-control border-input', 'required'=>'required')) }}
                     </div>
                 </div>
             </div>

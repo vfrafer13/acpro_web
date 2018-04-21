@@ -24,8 +24,12 @@
                         <td>{{date('d/m/Y', strtotime($appointment->date))}}</td>
                     </tr>
                     <tr>
-                        <td><b>Hora</b></td>
+                        <td><b>Hora de Inicio</b></td>
                         <td>{{date('H:i', strtotime($appointment->date))}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Hora de Fin</b></td>
+                        <td>{{date('H:i', strtotime($appointment->date_end))}}</td>
                     </tr>
                     <tr>
                         <td><b>Dirección</b></td>

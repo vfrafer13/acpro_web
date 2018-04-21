@@ -13,6 +13,8 @@
         <tr>
             <td>Nombre</td>
             <td>Fecha</td>
+            <td>Hora</td>
+            <td>Duración</td>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +22,7 @@
             <tr>
                 <td>{{ $value->name }}</td>
                 <td>{{ date('d-m-Y', strtotime($value->date)) }}</td>
+                <td>{{ date('H:i', strtotime($value->date)) }}</td>
                 <td>
                     {{ Form::open(array('url' => 'events/' . $value->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
