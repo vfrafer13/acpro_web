@@ -50,7 +50,7 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date' => 'required|time_free:time,time_end,id,query_type',
+            'date' => 'required|time_free:time,time_end,null,query_type',
             'time' => 'required',
             'time_end' => 'required|after:time',
         ]);
@@ -119,7 +119,7 @@ class AppointmentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'date' => 'required|time_free:time,time_end,null,query_type',
+            'date' => 'required|time_free:time,time_end,id,query_type',
             'time' => 'required',
             'time_end' => 'required|after:time',
         ]);

@@ -10,16 +10,6 @@
     <div class="card">
         <div class="content">
             <div class="text-center">
-                <a href="{{ URL::to('events/' . $event->id) }}">
-                    <h6>
-                        Próximo evento: {{date('d/m/Y', strtotime($event->date))}}, {{date('H:i', strtotime($event->date))}}
-                    </h6>
-                </a><br>
-                <a href="{{ URL::to('appointments/' . $appointment->id) }}">
-                    <h6>
-                        Próxima cita: {{date('d/m/Y', strtotime($appointment->date))}}, {{date('H:i', strtotime($appointment->date))}}
-                    </h6>
-                </a><br>
                 {{ Form::hidden('lat', $coordinates[0], ['id' => 'lat']) }}
                 {{ Form::hidden('lng', $coordinates[1], ['id' => 'lng']) }}
                 @if(count($coordinates)>=3)
@@ -31,15 +21,26 @@
                 <br>
                 {{ Html::image('img/main.jpg', '', array('class' => 'img-circle img-thumbnail', 'style' => 'width:25%')) }}
                 <br/>
-                <div class="card card-map">
-                    <div class="header">
-                        <h4 class="title">Próxima cita</h4>
+                <br/>
+                <br/>
+                @if(!is_null($event))
+                    <a href="{{ URL::to('events/' . $event->id) }}">
+                        <h6>
+                            Próximo evento: {{date('d/m/Y', strtotime($event->date))}}, {{date('H:i', strtotime($event->date))}}
+                        </h6>
+                    </a><br>
+                @elseif(!is_null($appointment))
+                    <a href="{{ URL::to('appointments/' . $appointment->id) }}">
+                        <h6>
+                            Próxima cita: {{date('d/m/Y', strtotime($appointment->date))}}, {{date('H:i', strtotime($appointment->date))}}
+                        </h6>
+                    </a><br>
+                    <div class="card card-map">
+                        <div class="map">
+                            <div id="map"></div>
+                        </div>
                     </div>
-                    <div class="map">
-                        <div id="map"></div>
-                    </div>
-                </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>

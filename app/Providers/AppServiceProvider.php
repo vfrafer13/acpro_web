@@ -51,20 +51,16 @@ class AppServiceProvider extends ServiceProvider
             );
 
             $type = Input::get($parameters[3]);
-
             if($type == 'event') {
                 $id = Input::get($parameters[2]);
                 $eventInRangeQUERY = $eventInRangeQUERY->where('id', '!=', $id)->get();
-            } else if($type == 'appointment') {
+            } elseif($type == 'appointment') {
                 $id = Input::get($parameters[2]);
                 $appointmentInRangeQUERY = $appointmentInRangeQUERY->where('id', '!=', $id)->get();
             }
 
             $eventInRange = $eventInRangeQUERY->count();
-
             $appointmentInRange = $appointmentInRangeQUERY->count();
-
-            //dd([$eventInRange, $appointmentInRange]);
 
             if ($eventInRange > 0 || $appointmentInRange > 0) {
 
