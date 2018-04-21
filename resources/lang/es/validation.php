@@ -22,7 +22,7 @@ return [
     'alpha_num'            => 'El campo :attribute sólo puede contener letras y números.',
     'array'                => 'El campo :attribute debe ser un array.',
     'before'               => 'El campo :attribute debe ser una fecha anterior a :date.',
-    'before_or_equal'      => 'El campo :attribute debe ser una fecha anterior o igual a :date.',
+    'before_or_equal'      => 'El campo :attribute debe ser una fecha anterior o igual a hoy.',
     'between'              => [
         'numeric' => 'El campo :attribute debe ser un valor entre :min y :max.',
         'file'    => 'El archivo :attribute debe pesar entre :min y :max kilobytes.',
@@ -101,6 +101,7 @@ return [
     */
 
     'time_free'            => 'Ya existe un evento o una cita en este horario.',
+    'before:tomorrow'      => 'El campo fecha debe ser una fecha anterior o igual a hoy.',
 
     'custom' => [
         'attribute-name' => [
@@ -123,7 +124,9 @@ return [
         'time' => 'hora de inicio',
         'time_end' => 'hora de fin',
         'event_id' => 'evento',
-        'dog_id' => 'perro'
+        'dog_id' => 'perro',
+        'date' => 'fecha',
+        'tomorrow' => 'mañana'
     ],
 
 ];

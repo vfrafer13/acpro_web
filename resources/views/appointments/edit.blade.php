@@ -22,6 +22,8 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
+                        {{ Form::hidden('id', $appointment->id)}}
+                        {{ Form::hidden('type', 'appointment')}}
                         {{ Form::label('dog_id', 'Perro') }}
                         {{ Form::select('dog_id', $dogs, Input::old('dog_id'), ['class' => 'form-control border-input', 'required'=>'required']) }}
                     </div>

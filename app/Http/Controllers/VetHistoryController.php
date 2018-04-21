@@ -68,7 +68,7 @@ class VetHistoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
+            'date' => 'before_or_equal:today'
         ]);
 
         $vetHistory = new VetHistory;

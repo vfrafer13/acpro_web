@@ -35,17 +35,34 @@ class AppServiceProvider extends ServiceProvider
             $date_end->minute = $time_end->minute;
             $date_end->second = $time_end->second;
 
-            $eventInRange = (
-                Event::whereBetween('date', [$date_start, $date_end])
-                ->orWhereBetween('date_end', [$date_start, $date_end])
-                ->count()
+            $eventInRangeQUERY = (
+            Event::where(function($query) use ($date_start, $date_end){
+                $query->whereBetween('date', [$date_start, $date_end])
+                    ->orWhereBetween('date_end', [$date_start, $date_end]);
+            })
             );
 
-            $appointmentInRange = (
-                Appointment::whereBetween('date', [$date_start, $date_end])
-                ->orWhereBetween('date_end', [$date_start, $date_end])
-                ->count()
+
+            $appointmentInRangeQUERY = (
+            Appointment::where(function($query) use ($date_start, $date_end){
+                $query->whereBetween('date', [$date_start, $date_end])
+                    ->orWhereBetween('date_end', [$date_start, $date_end]);
+            })
             );
+
+            $type = Input::get($parameters[3]);
+            dd([$type]);
+
+            if($type == 'event') {
+                $id = Input::get($parameters[2]);
+                $eventInRangeQUERY = $eventInRangeQUERY->where('id', '!=', $id)->get();
+            } else if($type == 'appointment') {
+                $id = Input::get($parameters[2]);
+                $appointmentInRangeQUERY = $appointmentInRangeQUERY->where('id', '!=', $id)->get();
+            }
+
+            $eventInRange = $eventInRangeQUERY->count();
+            $appointmentInRange = $appointmentInRangeQUERY->count();
 
             if ($eventInRange > 0 || $appointmentInRange > 0) {
 

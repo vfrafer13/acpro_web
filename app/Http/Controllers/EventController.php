@@ -58,17 +58,17 @@ class EventController extends Controller
     {
 
         $request->validate([
-            'date' => 'required|time_free:time,time_end',
+            'date' => 'required|time_free:time,time_end,null,type',
             'time' => 'required',
             'time_end' => 'required|after:time',
         ]);
 
         $event = new Event;
-        $event->name           = Input::get('name');
+        $event->name            = Input::get('name');
 
-        $date_input = Input::get('date');
-        $time = Input::get('time');
-        $time_end = Input::get('time_end');
+        $date_input             = Input::get('date');
+        $time                   = Input::get('time');
+        $time_end               = Input::get('time_end');
 
         $date_end = Carbon::createFromTimestamp(strtotime($date_input . $time_end));
         $date = Carbon::createFromTimestamp(strtotime($date_input . $time . ":00"));
@@ -143,7 +143,7 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'date' => 'required|time_free:time,time_end',
+            'date' => 'required|time_free:time,time_end,id,type',
             'time' => 'required',
             'time_end' => 'required|after:time',
         ]);
