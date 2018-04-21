@@ -121,9 +121,10 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         $event->name           = Input::get('name');
-        $date = Input::get('date');
-        $time = Input::get('time');
-        $date = Carbon::createFromTimestamp(strtotime($date . $time . ":00"));
+        $date_db = Carbon::createFromFormat('Y-m-d H:i:s', $event->date);
+        $date = Input::get('date', $date_db->format('Y:m:d'));
+        $time = Input::get('time', $date_db->format('H:i'));
+        $date = Carbon::createFromTimestamp(strtotime($date . $time));
         $event->date           = $date;
         $event->address        = Input::get('address');
         $event->type           = Input::get('type');

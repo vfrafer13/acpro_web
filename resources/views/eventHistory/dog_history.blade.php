@@ -23,7 +23,7 @@
                 <td>{{ $types[$eventTypes[$value->event_id]]}}</td>
                 <td>{{ date('d-m-Y', strtotime($eventDates[$value->event_id])) }}</td>
                 <td>
-                    {{ Form::open(array('url' => 'vet_histories/' . $value->id, 'class' => 'pull-right')) }}
+                    {{ Form::open(array('url' => 'event_histories/' . $value->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
                     {{ Form::close() }}

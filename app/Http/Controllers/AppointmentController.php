@@ -99,9 +99,10 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::find($id);
         $appointment->dog_id        = Input::get('dog_id');
-        $date = Input::get('date');
-        $time = Input::get('time');
-        $date = Carbon::createFromTimestamp(strtotime($date . $time . ":00"));
+        $date_db = Carbon::createFromFormat('Y-m-d H:i:s', $appointment->date);
+        $date = Input::get('date', $date_db->format('Y-m-d'));
+        $time = Input::get('time', $date_db->format('H:i'));
+        $date = Carbon::createFromTimestamp(strtotime($date . $time));
         $appointment->date          = $date;
         $appointment->address       = Input::get('address');
         $appointment->save();

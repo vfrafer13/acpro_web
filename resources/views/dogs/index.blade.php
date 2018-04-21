@@ -37,7 +37,7 @@
                     @endif
                 </td>
                 <td>
-                    {{ Form::open(array('url' => 'nerds/' . $value->id, 'class' => 'pull-right')) }}
+                    {{ Form::open(array('url' => 'dogs/' . $value->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
                     {{ Form::close() }}
