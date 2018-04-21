@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use App\Event;
 use App\EventType;
 use App\Dog;
-use App\Appointment;
 use View;
 use Input;
 use Illuminate\Support\Facades\Redirect;
@@ -27,10 +26,15 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::where('date', '>=', Carbon::today()->toDateString())
+            ->orderBy('date', 'asc')->get();
+
+        $events_old = Event::where('date', '<', Carbon::today()->toDateString())
+            ->orderBy('date', 'desc')->get();
 
         return View::make('events.index')
-            ->with('events', $events);
+            ->with('events', $events)
+            ->with('events_old', $events_old);
     }
 
     /**

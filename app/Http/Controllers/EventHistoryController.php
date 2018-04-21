@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\EventHistory;
 use App\Event;
 use App\Dog;
+use Carbon\Carbon;
 use DB;
 use View;
 use Input;
@@ -58,7 +59,8 @@ class EventHistoryController extends Controller
     public function create($id)
     {
         $dog = Dog::find($id);
-        $events = $dog->events->pluck('full_name', 'id');
+        $events = $dog->events->where('date', '<', Carbon::today()->toDateString())
+            ->pluck('full_name', 'id');
 
         return View::make('eventHistory.create', compact('id', 'events', 'eventDates'))
             ->with('dog', $dog);
@@ -69,8 +71,11 @@ class EventHistoryController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
+        $request->validate([
+        ]);
+
         $eventHistory = new EventHistory;
         $eventHistory->dog_id       = Input::get('dog_id');
         $eventHistory->event_id     = Input::get('event_id');

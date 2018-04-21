@@ -20,10 +20,15 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::all();
+        $appointments = Appointment::where('date', '>=', Carbon::today()->toDateString())
+            ->orderBy('date', 'asc')->get();
+
+        $appointment_old = Appointment::where('date', '<', Carbon::today()->toDateString())
+            ->orderBy('date', 'desc')->get();
 
         return View::make('appointments.index')
-            ->with('appointments', $appointments);
+            ->with('appointments', $appointments)
+            ->with('appointment_old', $appointment_old);
     }
 
     /**
